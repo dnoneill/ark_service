@@ -1,4 +1,5 @@
 from django.db import models
+import arkpy
 
 # Create your models here.
 
@@ -15,8 +16,14 @@ class Minter(models.Model):
 	
 	def _ark_exists(self, key):
 		test = Ark.objects.filter(key=key)
-		return test
-
+		if test.count() == 0:
+			return False
+		else:
+			return True
+	def mint(self, quantity):
+		ark = arkpy.mint(authority=settings.NAAN, prefix=self.prefix, template=self.template)
+		return ark
+		
 class Ark(models.Model):
 	key = models.CharField(max_length=25, unique=True)
 	date_created = models.DateTimeField(auto_now_add=True)

@@ -8,10 +8,12 @@ class MinterModelTest(TestCase):
 		name = Minter(name="test")
 		test = name.__repr__()
 		self.assertEqual(test, "Minter: test")
-	'''def test_ark_exists(self, key):
-		exists = Minter(key="1234")
-		print(exists)
-		print(exists._ark_exists(self, key))'''
+	def test_ark_exists(self):
+		ark_test = Minter._ark_exists(self, 1234)
+		self.assertEqual(ark_test, False)
+	def test_mint(self):
+		ark = Minter.mint(self, 2)
+		print(ark)
 
 class ArkModelTest(TestCase):
 	def test_repr(self):
