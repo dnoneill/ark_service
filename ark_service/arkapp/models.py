@@ -12,7 +12,7 @@ class Minter(models.Model):
 	description = models.CharField(max_length=1000)
 
 	def __repr__(self):
-		return "Minter: {}".format(self.name)
+		return "<Minter: {}>".format(self.name)
 	
 	def _ark_exists(self, key):
 		test = Ark.objects.filter(key=key)
@@ -32,4 +32,4 @@ class Ark(models.Model):
 	url = models.URLField(null=True, blank=True)
 	
 	def __repr__(self):
-		return "Ark: {}".format(self.key)
+		return "<Ark: {}>".format(self.key)
