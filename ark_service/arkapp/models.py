@@ -39,5 +39,5 @@ class Ark(models.Model):
 	def __repr__(self):
 		return "<Ark: {}>".format(self.key)
 	def bind(self, url):
-		return Ark.models.update_or_create(url=url)
+		return Ark.objects.update_or_create(url=url)
 		
