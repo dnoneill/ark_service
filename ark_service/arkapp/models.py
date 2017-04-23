@@ -25,9 +25,11 @@ class Minter(models.Model):
 		x = 0
 		while x < quantity:
 			ark = arkpy.mint(authority=settings.NAAN, template=self.template, prefix=self.prefix)
-			if self.__ark_exists(self, ark) == False:
+			if self._ark_exists(ark) == False:
 				Ark.objects.create(ark)
-			x +=1				
+				x +=1	
+			else:
+				continue			
 		
 class Ark(models.Model):
 	key = models.CharField(max_length=25, unique=True) 
