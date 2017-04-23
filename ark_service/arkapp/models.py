@@ -25,9 +25,11 @@ class Minter(models.Model):
 		x = 0
 		while x < quantity:
 			ark = arkpy.mint(authority=settings.NAAN, template=self.template, prefix=self.prefix)
-			if self.__ark_exists(self, ark) == False:
+			if self._ark_exists(ark) == False:
 				Ark.objects.create(ark)
-			x +=1				
+				x +=1	
+			else:
+				continue			
 		
 class Ark(models.Model):
 	key = models.CharField(max_length=25, unique=True) 
@@ -39,5 +41,5 @@ class Ark(models.Model):
 	def __repr__(self):
 		return "<Ark: {}>".format(self.key)
 	def bind(self, url):
-		return Ark.models.update_or_create(url=url)
+		return Ark.objects.update_or_create(url=url)
 		
