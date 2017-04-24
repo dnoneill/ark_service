@@ -3,7 +3,7 @@ import arkpy
 from django.conf import settings
 
 # Create your models here.
-
+staticurl = "http://127.0.0.1:8000"
 class Minter(models.Model):
 	name = models.CharField(max_length=1000)
 	prefix = models.CharField(max_length=7)
@@ -27,7 +27,7 @@ class Minter(models.Model):
 		while x < quantity:
 			ark = arkpy.mint(authority=settings.NAAN, template=self.template, prefix=self.prefix)
 			if self._ark_exists(ark) == False:
-				object = Ark.objects.create(key=ark, minter=self)
+				object = Ark.objects.create(key=ark, minter=self, url=staticurl)
 				arks.append(ark)
 				x +=1	
 			else:
@@ -43,7 +43,9 @@ class Ark(models.Model):
 	def __repr__(self):
 		return "<Ark: {}>".format(self.key)
 	def bind(self, url):
-		self.url = url + "/ark:/" + settings.NAAN + "/" + self.minter.prefix + "/" + self.key
-		self.save()
+		url = url + "/ark:/" + settings.NAAN + "/" + self.minter.prefix + "/" + self.key
+		obj = Ark.objects.get(key=self.key)
+		obj.url = url
+		obj.save()
 		return self.url
 		

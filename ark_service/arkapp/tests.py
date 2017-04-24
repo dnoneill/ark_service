@@ -22,7 +22,8 @@ class MinterModelTest(TestCase):
 		minter.save()
 		ark = minter.mint(2)
 		self.assertEqual(len(ark), 2)
-		
+		self.assertIn(ark[0],"12345/lib-") 
+		self.assertIn(ark[1],"12345/lib-")
 class ArkModelTest(TestCase):
 	def test_repr(self):
 		key = Ark(key="12345")
