@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from arkapp import views as arkapp_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^mint/', arkapp_views.mint, name='mint'),
+    url(r'^bind/', arkapp_views.bind, name='bind'),
+    url(r'^arks/', arkapp_views.arks, name='arks'),
 ]
