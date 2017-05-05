@@ -33,7 +33,10 @@ class Minter(models.Model):
 				x +=1	
 			else:
 				continue
-		return arks
+		if quantity == 1:
+			return arks[0]
+		else:
+			return arks
 class Ark(models.Model):
 	key = models.CharField(max_length=25, unique=True) 
 	date_created = models.DateTimeField(auto_now_add=True)
