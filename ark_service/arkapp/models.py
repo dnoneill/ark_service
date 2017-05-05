@@ -21,7 +21,7 @@ class Minter(models.Model):
 			return False
 		else:
 			return True
-	def mint(self, quantity):
+	def mint(self, quantity=1):
 		x = 0
 		arks = []
 		while x < quantity:
