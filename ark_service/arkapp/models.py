@@ -47,7 +47,7 @@ class Ark(models.Model):
 	def __repr__(self):
 		return "<Ark: {}>".format(self.key)
 	def bind(self, url):
-		url = url + "/ark:/" + settings.NAAN + "/" + self.minter.prefix + "/" + self.key
+		#url = url + "/ark:/" + settings.NAAN + "/" + self.minter.prefix + "/" + self.key
 		obj = Ark.objects.get(key=self.key)
 		obj.url = url
 		obj.save()
