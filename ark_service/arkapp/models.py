@@ -51,5 +51,5 @@ class Ark(models.Model):
 		obj = Ark.objects.get(key=self.key)
 		obj.url = url
 		obj.save()
-		return self.url
+		return obj.url
 		
